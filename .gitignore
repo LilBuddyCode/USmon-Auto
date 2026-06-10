@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+.pnp/
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+dist/
+
+# Secrets (CRITICAL — never commit)
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Test
+coverage/
+.vitest-cache/
+
+# Real PHI guard — never accidentally commit a real export
+/_data/
+/uploads/
+*.real.csv
+inventory_*.csv

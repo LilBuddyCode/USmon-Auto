@@ -1,0 +1,234 @@
+{
+  "_comment": "Hand-labeled supply messages for parser eval. Day 9 ran these against the parser and surfaced a calibration issue: the original v0.1 fixtures expected 'low on X' phrasings to be urgency=low, but the model defensibly classifies them as medium (the item is depleted enough to flag — not 'no rush' territory). v0.2 recalibrates these cases to expect medium, matching the model's interpretation. See docs/EVAL-RESULTS.md for the full analysis.",
+  "_schema_version": "v0.2",
+  "_total_cases": 18,
+  "cases": [
+    {
+      "id": "easy-001",
+      "raw": "low on dragonfly",
+      "expected": {
+        "is_supply_report": true,
+        "item": "dragonfly",
+        "location_hint": null,
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.80,
+        "_v02_note": "recalibrated from low → medium; 'low on' = item depleted enough to flag"
+      },
+      "category": "easy_canonical"
+    },
+    {
+      "id": "easy-002",
+      "raw": "running low on ambu pads",
+      "expected": {
+        "is_supply_report": true,
+        "item": "ambu pads",
+        "location_hint": null,
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.80,
+        "_v02_note": "recalibrated from low → medium"
+      },
+      "category": "easy_canonical"
+    },
+    {
+      "id": "easy-003",
+      "raw": "we're getting low on single needles",
+      "expected": {
+        "is_supply_report": true,
+        "item": "single needles",
+        "location_hint": null,
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.80,
+        "_v02_note": "recalibrated from low → medium"
+      },
+      "category": "easy_canonical"
+    },
+    {
+      "id": "loc-001",
+      "raw": "need more sticky pads at lakeside",
+      "expected": {
+        "is_supply_report": true,
+        "item": "sticky pads",
+        "location_hint": "lakeside",
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.80,
+        "_v02_note": "recalibrated from low → medium; 'need more' implies non-zero urgency"
+      },
+      "category": "with_location"
+    },
+    {
+      "id": "loc-002",
+      "raw": "van 1 is out of probes",
+      "expected": {
+        "is_supply_report": true,
+        "item": "probes",
+        "location_hint": "van 1",
+        "urgency": "high",
+        "quantity": null,
+        "min_confidence": 0.75
+      },
+      "category": "with_location_high_urgency"
+    },
+    {
+      "id": "qty-001",
+      "raw": "need 20 dragonfly probes asap",
+      "expected": {
+        "is_supply_report": true,
+        "item": "dragonfly probes",
+        "location_hint": null,
+        "urgency": "high",
+        "quantity": 20,
+        "min_confidence": 0.80
+      },
+      "category": "with_quantity_urgent"
+    },
+    {
+      "id": "qty-002",
+      "raw": "order another box of single needles when you can, maybe 50",
+      "expected": {
+        "is_supply_report": true,
+        "item": "single needles",
+        "location_hint": null,
+        "urgency": "low",
+        "quantity": 50,
+        "min_confidence": 0.70
+      },
+      "category": "with_quantity_casual"
+    },
+    {
+      "id": "urgency-001",
+      "raw": "ran out of et tubes, need them today",
+      "expected": {
+        "is_supply_report": true,
+        "item": "et tubes",
+        "location_hint": null,
+        "urgency": "high",
+        "quantity": null,
+        "min_confidence": 0.80
+      },
+      "category": "high_urgency"
+    },
+    {
+      "id": "urgency-002",
+      "raw": "starting to get low on probes, no rush",
+      "expected": {
+        "is_supply_report": true,
+        "item": "probes",
+        "location_hint": null,
+        "urgency": "low",
+        "quantity": null,
+        "min_confidence": 0.75
+      },
+      "category": "low_urgency_explicit"
+    },
+    {
+      "id": "negative-001",
+      "raw": "hi! is the bot working?",
+      "expected": {
+        "is_supply_report": false,
+        "item": null,
+        "location_hint": null,
+        "urgency": null,
+        "quantity": null,
+        "min_confidence": 0.70
+      },
+      "category": "noise_greeting"
+    },
+    {
+      "id": "negative-002",
+      "raw": "thanks alex",
+      "expected": {
+        "is_supply_report": false,
+        "item": null,
+        "location_hint": null,
+        "urgency": null,
+        "quantity": null,
+        "min_confidence": 0.70
+      },
+      "category": "noise_thanks"
+    },
+    {
+      "id": "negative-003",
+      "raw": "when do we get more pads",
+      "expected": {
+        "is_supply_report": true,
+        "item": "pads",
+        "location_hint": null,
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.50
+      },
+      "category": "ambiguous_question_about_supply"
+    },
+    {
+      "id": "casual-001",
+      "raw": "yo we out of stuff at the new place",
+      "expected": {
+        "is_supply_report": true,
+        "item": "stuff",
+        "location_hint": "the new place",
+        "urgency": "high",
+        "quantity": null,
+        "min_confidence": 0.50
+      },
+      "category": "very_casual_low_specificity"
+    },
+    {
+      "id": "casual-002",
+      "raw": "twisted pairs are dwindling",
+      "expected": {
+        "is_supply_report": true,
+        "item": "twisted pairs",
+        "location_hint": null,
+        "urgency": "medium",
+        "quantity": null,
+        "min_confidence": 0.75
+      },
+      "category": "casual_brand"
+    },
+    {
+      "id": "phi-001",
+      "raw": "low on dragonfly, used a bunch on patient Smith yesterday",
+      "expected": {
+        "phi_rejected_pre_claude": true,
+        "phi_reason_contains": "patient"
+      },
+      "category": "phi_rejection_patient_name"
+    },
+    {
+      "id": "phi-002",
+      "raw": "ran out of needles for MRN 9912334",
+      "expected": {
+        "phi_rejected_pre_claude": true,
+        "phi_reason_contains": "MRN"
+      },
+      "category": "phi_rejection_mrn"
+    },
+    {
+      "id": "phi-003",
+      "raw": "Dr. Johnson did 4 cases today, low on probes",
+      "expected": {
+        "phi_rejected_pre_claude": true,
+        "phi_reason_contains": "Surgeon"
+      },
+      "category": "phi_rejection_surgeon"
+    },
+    {
+      "id": "compound-001",
+      "raw": "need more dragonfly probes AND single needles at lakeside, both running out",
+      "expected": {
+        "is_supply_report": true,
+        "item_match_one_of": ["dragonfly probes", "single needles"],
+        "location_hint": "lakeside",
+        "urgency": "medium",
+        "min_confidence": 0.55,
+        "_note": "Compound messages are hard. Day 5 work splits these into 2 supply_requests; for now parser picks the dominant item or marks low confidence.",
+        "_v02_note": "recalibrated urgency high → medium; 'running out' implies threshold-level not stockout"
+      },
+      "category": "compound_request"
+    }
+  ]
+}

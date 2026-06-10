@@ -1,0 +1,6 @@
+"Supply_Item","location_name","location_id","Manufacture","Manufacture_Number","unit_hand"
+"Dragonfly","Operator HQ","LOC-001","Cadwell","DR-100","12"
+"Disposable Probe","Operator HQ","LOC-001","Ambu","ASP-440","8"
+"Ambu Twisted Pairs","Operator HQ","LOC-001","Ambu","ATP-220","24"
+"Ambu Sticky Pads","Mobile Van 1","LOC-002","Ambu","ASS-110","5"
+"Ambu Single Needles","Mobile Van 1","LOC-002","Ambu","ASN-330","3"

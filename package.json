@@ -1,0 +1,47 @@
+{
+  "name": "usmon-auto",
+  "version": "0.1.0",
+  "description": "Predictive inventory companion for IONM companies running USmon. Non-PHI operational layer. Telegram bot + web dashboard.",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "db:migrate": "node-pg-migrate up",
+    "db:rollback": "node-pg-migrate down",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "eval": "tsx src/eval/run-eval.ts",
+    "eval:ci": "tsx src/eval/run-eval.ts --ci",
+    "bot:webhook:set": "tsx src/bot/set-webhook.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.30.0",
+    "next": "^15.0.0",
+    "node-telegram-bot-api": "^0.66.0",
+    "papaparse": "^5.4.1",
+    "pg": "^8.13.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/node-telegram-bot-api": "^0.64.0",
+    "@types/papaparse": "^5.3.0",
+    "@types/pg": "^8.11.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.0.0",
+    "eslint-config-next": "^15.0.0",
+    "node-pg-migrate": "^7.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0",
+    "vitest": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=18.17.0"
+  }
+}
